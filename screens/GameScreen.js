@@ -26,19 +26,19 @@ const GameScreen = ({ route }) => {
         let tempSentence = '';
 
         // Call the API endpoint to retrieve the sentence based on the mode
-        // try {
-        //     const response = await fetch(`http://localhost:3000/sentence?mode=${mode}`);
-        //     const data = await response.json();
+        try {
+            const response = await fetch(`https://truth-or-dare.swameta.fr/api/sentence?mode=${mode}`);
+            const data = await response.json();
 
-        //     // Extract the sentence from the API response
-        //     tempSentence = data.sentence;
-        // } catch (error) {
-        //     console.error('Error while fetching sentence from API:', error);
-        // }
+            // Extract the sentence from the API response
+            tempSentence = data.sentence;
+        } catch (error) {
+            console.error('Error while fetching sentence from API:', error);
+        }
 
         // If the API call fails or the sentence is not available, use a default sentence
         if (!tempSentence) {
-            tempSentence = 'Décris avec des détails exagérés comment tu séduirais Y en utilisant uniquement des objets du quotidien.';
+            tempSentence = 'Veuillez vous connecter à Internet pour obtenir une phrase.';
         }
         let players = await getPlayer();
 
